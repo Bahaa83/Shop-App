@@ -28,5 +28,19 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+using var scope = app.Services.CreateScope();
+var context = scope.ServiceProvider.GetRequiredService<ShopContext>();
+var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+try
+{
+    // Create Data base === update-database
+    context.Database.Migrate();
+    // Start seed data
+    SeedData.seedData(context);
+}
+catch (Exception ex)
+{
 
+    logger.LogError(ex, "Error occurs while migrating data");
+}
 app.Run();

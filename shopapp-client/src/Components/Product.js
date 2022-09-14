@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-const Product = () => {
+const Product = ({product}) => {
+    
     return (
-        <div>Product</div>
+        <Fragment>
+            <div>{product.name}</div>
+            <div>{product.price}</div>
+        </Fragment>
     )
 }
 

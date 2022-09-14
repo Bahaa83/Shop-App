@@ -6,6 +6,7 @@ const Product = ({product}) => {
         <Fragment>
             <div>{product.name}</div>
             <div>{product.price}</div>
+            <div>{product.pictureUrl}</div>
         </Fragment>
     )
 }

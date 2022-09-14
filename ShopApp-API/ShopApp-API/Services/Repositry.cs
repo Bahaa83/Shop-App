@@ -1,4 +1,5 @@
-﻿using ShopApp_API.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopApp_API.Data;
 using ShopApp_API.Entiteis;
 
 namespace ShopApp_API.Services
@@ -12,15 +13,15 @@ namespace ShopApp_API.Services
             this.context = context;
         }
 
-        public Product getProductById(int id)
+        public async Task<Product> getProductById(int id)
         {
-            var product = context.Products!.FirstOrDefault(p => p.Id == id);
+            var product =await context.Products!.FirstOrDefaultAsync(p => p.Id == id);
             return product!;
         }
 
-        public List<Product> getProducts()
+        public async Task< List<Product>> getProducts()
         {
-            var products = context.Products!.ToList();
+            var products = await context.Products!.ToListAsync();
             return products;
         }
     }

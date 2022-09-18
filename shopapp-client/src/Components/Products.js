@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import Product from "./Product";
+import Grid from '@mui/material/Grid';
+
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -11,13 +13,22 @@ const Products = () => {
             .catch(err => console.log(err));
     }, [])
    
-    const showProducts = products.map(item =>
+    const showProducts = products.map(pro =>
         
-            <Product key={item.id} product={item} />
+            <Grid item key={pro.id} xs={6} sm={4} lg={3}>
+                <Product product={pro} />
+            </Grid>
+            
     );
     
     return (
-        <div>{showProducts}</div>
+        <Fragment>
+            <Grid container rowSpacing={1} columnSpacing={3} sx={{mt:15,mb:5,px:2}}>
+                {showProducts}
+            </Grid>
+            
+        </Fragment>
+        
     )
 }
 

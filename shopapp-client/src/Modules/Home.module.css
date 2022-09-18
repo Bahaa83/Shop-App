@@ -39,9 +39,9 @@ p{
         display: none;
     }
     .titleHeader {
-        margin: 0 auto 50px;
         text-align: center;
         position: relative;
+        float: left;
     }
 }
 

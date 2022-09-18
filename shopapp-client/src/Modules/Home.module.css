@@ -1,0 +1,47 @@
+.content{
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    margin-top: 30px;
+    padding: 0 16px;
+    color: #1976d2;
+    margin-top: 69px;
+}
+.titleHeader{
+    position: absolute;
+    width: 250px;
+    left: 30px;
+}
+.titleHeader h2{
+
+}
+.titleHeader h3 {
+    text-align: center;
+}
+p{
+    margin: 0 auto ;
+    text-align: center;
+    font-size: 17px;
+}
+.titleContent{
+
+}
+.eventImg{
+    width: 250px;
+    height: 300px;
+    position: absolute;
+    z-index: 1000;
+    right: 100px;
+    top: 0;
+}
+@media (max-width:1200px) {
+    .eventImg {
+        display: none;
+    }
+    .titleHeader {
+        margin: 0 auto 50px;
+        text-align: center;
+        position: relative;
+    }
+}
+

@@ -44,9 +44,9 @@ const Header = () => {
               </List>
             </Box>
           <Box display='flex' alignItems='center'>
-              <IconButton color="inherit" size='large' >
+              <IconButton color="inherit" size='large'component={NavLink} to="/ShopCard" >
                 <Badge badgeContent="2" color="secondary">
-                  <ShoppingCartIcon/>
+                <ShoppingCartIcon  />
                 </Badge>
               </IconButton>
               <List sx={{ display: "flex" }}>

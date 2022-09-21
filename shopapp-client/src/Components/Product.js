@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader'
 import Avatar from '@mui/material/Avatar';
+import {NavLink} from 'react-router-dom';
 
 const Product = ({product}) => {
     
@@ -39,8 +40,19 @@ const Product = ({product}) => {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{display:"flex",justifyContent:"center"}}>
-                    <Button style={{fontWeight:"bolder"}} size="small">Add to Card</Button>
-                    <Button style={{fontWeight:"bolder"}} size="small">View details</Button>
+                    <Button
+                        style={{ fontWeight: "bolder" }} size="small"
+                    >
+                        Add to Card
+                    </Button>
+                    <Button
+                        component={NavLink}
+                        style={{ fontWeight: "bolder" }}
+                        size="small"
+                        to={`/productdetails/${product.id}`}
+                    >
+                        View details
+                    </Button>
                 </CardActions>
             </Card>
         </Fragment>

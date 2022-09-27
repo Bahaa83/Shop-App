@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using ShopApp_API.Data;
-using ShopApp_API.Services;
+using ShopApp_API.Services.IRepo;
+using ShopApp_API.Services.Repo;
 
 var builder = WebApplication.CreateBuilder(args);
 

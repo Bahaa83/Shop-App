@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopApp_API.Data;
 using ShopApp_API.Entiteis;
-using ShopApp_API.Services;
+using ShopApp_API.Services.IRepo;
 
 namespace ShopApp_API.Controllers
 {

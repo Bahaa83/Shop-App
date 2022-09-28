@@ -10,9 +10,9 @@ namespace ShopApp_API.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly IRepositry _repo;
+        private readonly IProduct _repo;
 
-        public ProductsController(IRepositry repo)
+        public ProductsController(IProduct repo)
         {
             this._repo = repo;
         }

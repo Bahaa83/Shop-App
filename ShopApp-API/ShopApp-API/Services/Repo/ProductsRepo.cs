@@ -5,11 +5,11 @@ using ShopApp_API.Services.IRepo;
 
 namespace ShopApp_API.Services.Repo
 {
-    public class Repositry : IRepositry
+    public class ProductsRepo : IProduct
     {
         private readonly ShopContext context;
 
-        public Repositry(ShopContext context)
+        public ProductsRepo(ShopContext context)
         {
             this.context = context;
         }

@@ -2,7 +2,7 @@
 
 namespace ShopApp_API.Services.IRepo
 {
-    public interface IRepositry
+    public interface IProduct
     {
         Task<List<Product>> getProducts();
         Task<Product> getProductById(int id);

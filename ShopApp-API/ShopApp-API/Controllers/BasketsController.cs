@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopApp_API.Data;
+using ShopApp_API.Dto;
 using ShopApp_API.Entiteis;
 using ShopApp_API.Services.IRepo;
 using System.Reflection;
@@ -23,11 +24,27 @@ namespace ShopApp_API.Controllers
      /// </summary>
      /// <returns>Basket object</returns>
         [HttpGet]
-        public async Task<ActionResult<Basket>> GetBasket()
+        public async Task<ActionResult<BasketDto>> GetBasket()
         {
             Basket basket = await RetrieveBasket();
             if(basket == null) return NotFound("Your basket is empty!!");
-            return Ok(basket);
+            return new BasketDto
+            {
+                Id = basket.Id,
+                BuyerId = basket.BuyerId,
+                Items = basket.BasketItems.Select(item => new BasketItemDto
+                {
+                    ProductId = item.ProductId,
+                    Name = item.Product.Name,
+                    Price = item.Product.Price,
+                    Description = item.Product.Description,
+                    Brand = item.Product.Brand,
+                    PictureUrl = item.Product.PictureUrl,
+                    QuantityInStock = item.Product.QuantityInStock,
+                    Type = item.Product.Type,
+                    Quantity = item.Quantity
+                }).ToList()
+            };
         }
         /// <summary>
         /// Add Product to Basket
@@ -54,6 +71,7 @@ namespace ShopApp_API.Controllers
         public async Task<ActionResult> RemoveItem(int productId,int quantity)
         {
            var basket = await RetrieveBasket();
+            if (basket == null) return NotFound();
             basket.RemoveBasketItem(productId, quantity);
            return await _context.SaveChangesAsync() > 0 ? Ok() :
                  BadRequest(new ProblemDetails { Title = "Problem Deleating Item to basket" });

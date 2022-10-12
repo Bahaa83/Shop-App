@@ -8,11 +8,11 @@ namespace ShopApp_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductController : ControllerBase
     {
         private readonly IProduct _repo;
 
-        public ProductsController(IProduct repo)
+        public ProductController(IProduct repo)
         {
             this._repo = repo;
         }

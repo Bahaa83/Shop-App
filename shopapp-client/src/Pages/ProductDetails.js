@@ -1,54 +1,63 @@
-import { Skeleton, Typography, Grid ,Divider, TableContainer, Table, TableHead, TableBody, TableCell} from '@mui/material';
+import {Typography, Grid ,Divider, TableContainer, Table, TableHead, TableCell, TableRow} from '@mui/material';
 import axios from 'axios';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import Loader from "../Components/Loader";
 
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     document.body.style.backgroundColor = "white";
-    axios.get(`https://localhost:5000/api/Products/${id}`)
-      .then(resp => setProduct(resp.data))
+    axios.get(`https://localhost:5000/api/Product/${id}`)
+      .then(resp => {
+        setProduct(resp.data)
+      console.log(product)})
       .catch(error => console.log(error))
-      .finally(setLoading(true))
+      .finally(()=>setLoading(false))
     return () => {
       document.body.style.backgroundColor = "#E8E8E8";
     }
-  }, [id])
+  }, [id,product])
 
   const showPoductDetails = () => {
     return (
     <Grid container spacing={6} marginTop={10} paddingRight={2}>
         <Grid item xs={12} md={6}>
-          {loading?<img src={ product.pictureUrl} alt="ProductImage" /> : <Skeleton/>} 
+        <img src={ product.pictureUrl} alt="ProductImage" /> 
         </Grid>
         <Grid item xs={12} md={6}>
-          <Typography variant='h4' color="initial">{loading ? product.name : <Skeleton />} name</Typography>
+          <Typography variant='h4' color="initial"> product.name  name</Typography>
           <Divider sx={{borderBottomWidth:"medium"}} variant="fullWidth" /> 
-          <Typography fontWeight="bolder" variant='h4' color="primary.dark">{loading ? (product.price / 100).toFixed(2) : <Skeleton />} Kr</Typography>
+          <Typography fontWeight="bolder" variant='h4' color="primary.dark"> {(product.price / 100).toFixed(2)} Kr</Typography>
           <TableContainer>
             <Table>
-                <TableBody>
-                    <TableHead>
+                <TableHead>
+                  <TableRow>
                       <TableCell>Name</TableCell>
                       <TableCell>{product.name}</TableCell>
-                    </TableHead>
-                    <TableHead>
+                  </TableRow>
+                </TableHead>
+              <TableHead>
+                  <TableRow>
                       <TableCell>Description</TableCell>
                       <TableCell>{product.description}</TableCell>
-                    </TableHead>
-                    <TableHead>
+                  </TableRow>
+                </TableHead>
+              <TableHead>
+                  <TableRow>
                       <TableCell>Brand</TableCell>
                       <TableCell>{product.brand}</TableCell>
-                    </TableHead>
-                    <TableHead>
+                  </TableRow>
+                </TableHead>
+              <TableHead>
+                  <TableRow>
                       <TableCell> In Stock</TableCell>
                       <TableCell>{product.quantityInStock}</TableCell>
-                    </TableHead>
-                </TableBody>
+                  </TableRow>
+                </TableHead>
             </Table> 
           </TableContainer>
         </Grid>
@@ -56,7 +65,7 @@ const ProductDetails = () => {
     </Grid> 
     )
   }
-
+    if(loading)return <Loader/>
   return (
     <Fragment>
       {showPoductDetails()}

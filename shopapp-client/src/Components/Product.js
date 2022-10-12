@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment} from 'react';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -8,8 +8,18 @@ import Typography from '@mui/material/Typography';
 import CardHeader from '@mui/material/CardHeader'
 import Avatar from '@mui/material/Avatar';
 import {NavLink} from 'react-router-dom';
+import axios from 'axios';
+import { LoadingButton } from '@mui/lab';
 
-const Product = ({product}) => {
+const Product = ({ product }) => {
+    const addItemToBasket = (productId) => {
+        const quantity = 1;
+        axios.post(`https://localhost:5000/api/Basket?productId=${productId}&quantity=${quantity}`,
+            { withCredentials: true })
+            .then(resp => {
+                console.log(resp.data)
+            })
+    }
     
     return (
         <Fragment>
@@ -40,11 +50,12 @@ const Product = ({product}) => {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{display:"flex",justifyContent:"center"}}>
-                    <Button
+                    <LoadingButton
                         style={{ fontWeight: "bolder" }} size="small"
+                        onClick={()=>addItemToBasket(product.id)}
                     >
                         Add to Card
-                    </Button>
+                    </LoadingButton>
                     <Button
                         component={NavLink}
                         style={{ fontWeight: "bolder" }}

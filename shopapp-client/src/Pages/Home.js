@@ -1,8 +1,17 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import Styles from "../Modules/Home.module.css";
+import Loader from "../Components/Loader";
 
 
 const Home = () => {
+    const [loading,setLoading] = useState(true);
+    const slep = () => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 500);
+    }
+    slep();
+     if(loading) return <Loader/>
     return (
         <Fragment>
                 <div className={Styles.content}>

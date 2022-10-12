@@ -7,7 +7,7 @@ import Products from "./Components/Products";
 import Contact from "./Pages/Contact";
 import ErrorPage from "./Pages/ErrorPage";
 import ProductDetails from "./Pages/ProductDetails";
-import ShopCard from "./Pages/ShopCard";
+import Basket from "./Pages/Basket";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 
@@ -20,7 +20,7 @@ function ShopApp() {
         <Route path='/home' element={<Home />}></Route>
         <Route path='/products' element={<Products />}></Route>
         <Route path='/contact' element={<Contact />}></Route>
-        <Route path='/shopcard' element={<ShopCard />}></Route>
+        <Route path='/basket' element={<Basket />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/register' element={<Register />}></Route>
         <Route path='/productdetails/:id' element={<ProductDetails />}></Route>

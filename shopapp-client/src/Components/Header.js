@@ -6,10 +6,9 @@ import Container from '@mui/material/Container';
 import { List, ListItem ,IconButton, Badge, Box} from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { textAlign } from '@mui/system';
 
-const pages = ['Home', 'Products', 'Contact'];
-const rightPages = ['Login', 'Register'];
+
+
 const linkStyle = {
                   color: 'grey.300',
                   typography: "h7",
@@ -44,7 +43,7 @@ const Header = () => {
               </List>
             </Box>
           <Box display='flex' alignItems='center'>
-              <IconButton color="inherit" size='large'component={NavLink} to="/ShopCard" >
+              <IconButton color="inherit" size='large'component={NavLink} to="/Basket" >
                 <Badge badgeContent="2" color="secondary">
                 <ShoppingCartIcon  />
                 </Badge>
